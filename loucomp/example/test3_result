@@ -1,0 +1,16 @@
+
+C-MINUS COMPILATION: test3.cm
+	1: reserved word: return
+	2: reserved word: void
+	3: reserved word: while
+	4: ID, name= until
+	5: ID, name= write
+	6: ID, name= read
+	7: ID, name= end
+	8: ==
+	9: !=
+	10: =
+	11: ;
+	12: ,
+	13: (
+	14: EOF
