@@ -1,3 +1,3 @@
-# Compiler
+# Compiler [ELE4029]
 
-## C-minus Scanner Project
+2024 Hanyang University Compilers Course(ELE4029) Project
