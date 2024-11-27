@@ -31,6 +31,7 @@ whitespace  [ \t]+
 
 "="             {return ASSIGN;}
 "<"             {return LT;}
+">"             {return GT;}
 "+"             {return PLUS;}
 "-"             {return MINUS;}
 "*"             {return TIMES;}

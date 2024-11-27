@@ -197,7 +197,7 @@ TokenType getToken(void)
            currentToken = GE; // >=
          else{
            ungetNextChar();
-           currentToken = GT; //<
+           currentToken = GT; //>
          }
          break;
         
