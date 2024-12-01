@@ -571,11 +571,11 @@ static const yytype_int16 yyrline[] =
 {
        0,    38,    38,    40,    49,    52,    53,    56,    63,    70,
       75,    82,    90,   109,   121,   122,   130,   140,   143,   150,
-     159,   169,   180,   185,   198,   205,   206,   207,   208,   209,
-     213,   217,   224,   232,   243,   253,   258,   268,   275,   281,
-     287,   297,   305,   312,   316,   319,   322,   325,   328,   334,
-     342,   349,   350,   354,   363,   371,   372,   376,   380,   384,
-     388,   396,   406,   408,   414,   423
+     159,   169,   180,   185,   198,   204,   205,   206,   207,   208,
+     212,   216,   223,   231,   242,   252,   257,   266,   273,   279,
+     284,   294,   302,   309,   313,   316,   319,   322,   325,   331,
+     339,   346,   347,   351,   360,   367,   368,   372,   376,   380,
+     384,   392,   402,   404,   410,   419
 };
 #endif
 
@@ -1668,59 +1668,58 @@ yyreduce:
 #line 198 "cminus.y"
               { 
                 yyval = NULL;
-                fprintf(stderr,"token string in NUL %s\n",tokenString); 
                 }
-#line 1674 "y.tab.c"
+#line 1673 "y.tab.c"
     break;
 
   case 25:
-#line 205 "cminus.y"
+#line 204 "cminus.y"
                       { yyval = yyvsp[0]; }
-#line 1680 "y.tab.c"
+#line 1679 "y.tab.c"
     break;
 
   case 26:
-#line 206 "cminus.y"
+#line 205 "cminus.y"
                     { yyval = yyvsp[0]; }
-#line 1686 "y.tab.c"
+#line 1685 "y.tab.c"
     break;
 
   case 27:
-#line 207 "cminus.y"
+#line 206 "cminus.y"
                      { yyval = yyvsp[0]; }
-#line 1692 "y.tab.c"
+#line 1691 "y.tab.c"
     break;
 
   case 28:
-#line 208 "cminus.y"
+#line 207 "cminus.y"
                      { yyval = yyvsp[0]; }
-#line 1698 "y.tab.c"
+#line 1697 "y.tab.c"
     break;
 
   case 29:
-#line 209 "cminus.y"
+#line 208 "cminus.y"
                   { yyval = yyvsp[0]; }
-#line 1704 "y.tab.c"
+#line 1703 "y.tab.c"
     break;
 
   case 30:
-#line 214 "cminus.y"
+#line 213 "cminus.y"
         {
             yyval = yyvsp[-1];
         }
-#line 1712 "y.tab.c"
+#line 1711 "y.tab.c"
     break;
 
   case 31:
-#line 218 "cminus.y"
+#line 217 "cminus.y"
         {
             yyval = NULL; // Empty statement
         }
-#line 1720 "y.tab.c"
+#line 1719 "y.tab.c"
     break;
 
   case 32:
-#line 225 "cminus.y"
+#line 224 "cminus.y"
         {
             yyval = newStmtNode(IfK);
             yyval->child[0] = yyvsp[-4]; // Condition
@@ -1728,11 +1727,11 @@ yyreduce:
             yyval->child[2] = yyvsp[0]; // Else-Statement
             yyval->lineno = lineno;
         }
-#line 1732 "y.tab.c"
+#line 1731 "y.tab.c"
     break;
 
   case 33:
-#line 233 "cminus.y"
+#line 232 "cminus.y"
         {
             yyval = newStmtNode(IfK);
             yyval->child[0] = yyvsp[-2];
@@ -1740,82 +1739,80 @@ yyreduce:
             yyval->child[2] = NULL;
             yyval->lineno = lineno;
         }
-#line 1744 "y.tab.c"
+#line 1743 "y.tab.c"
     break;
 
   case 34:
-#line 244 "cminus.y"
+#line 243 "cminus.y"
         {
             yyval = newStmtNode(WhileK);
             yyval->child[0] = yyvsp[-2]; // Condition
             yyval->child[1] = yyvsp[0]; // Loop Body
             yyval->lineno = lineno;
         }
-#line 1755 "y.tab.c"
+#line 1754 "y.tab.c"
     break;
 
   case 35:
-#line 254 "cminus.y"
+#line 253 "cminus.y"
         {
             yyval = newStmtNode(ReturnK);
             yyval->lineno = lineno;
         }
-#line 1764 "y.tab.c"
+#line 1763 "y.tab.c"
     break;
 
   case 36:
-#line 259 "cminus.y"
+#line 258 "cminus.y"
         {
-            fprintf(stderr,"tokenString in return %s\n",tokenString);
             yyval = newStmtNode(ReturnK);
             yyval->child[0] = yyvsp[-1]; // Return Value
             yyval->lineno = lineno;
         }
-#line 1775 "y.tab.c"
+#line 1773 "y.tab.c"
     break;
 
   case 37:
-#line 269 "cminus.y"
+#line 267 "cminus.y"
         {
             yyval = newExpNode(AssignK);
             yyval->child[0] = yyvsp[-2]; 
             yyval->child[1] = yyvsp[0]; 
             yyval->lineno = lineno;
         }
-#line 1786 "y.tab.c"
+#line 1784 "y.tab.c"
     break;
 
   case 38:
-#line 276 "cminus.y"
+#line 274 "cminus.y"
     {
         yyval = yyvsp[0];
     }
-#line 1794 "y.tab.c"
+#line 1792 "y.tab.c"
     break;
 
   case 39:
-#line 282 "cminus.y"
+#line 280 "cminus.y"
         {
-            fprintf(stderr, "DEBUG: var identifier name = %s\n", yyvsp[0]->attr.name);
             yyval = newExpNode(IdK);
             yyval->attr.name = yyvsp[0]->attr.name;
         }
-#line 1804 "y.tab.c"
+#line 1801 "y.tab.c"
     break;
 
   case 40:
-#line 288 "cminus.y"
+#line 285 "cminus.y"
         {
             yyval = newExpNode(IdK);
             yyval->attr.name = copyString(yyvsp[-3]->attr.name);
             yyval->child[0] = yyvsp[-1]; // Array Index
             yyval->lineno = lineno;
         }
-#line 1815 "y.tab.c"
+#line 1812 "y.tab.c"
     break;
 
   case 41:
-#line 298 "cminus.y"
+#line 295 "cminus.y"
         {
             yyval = newExpNode(OpK);
             yyval->attr.op = yyvsp[-1]->attr.op; 
@@ -1823,68 +1820,68 @@ yyreduce:
             yyval->child[1] = yyvsp[0]; 
             yyval->lineno = lineno;
         }
-#line 1827 "y.tab.c"
+#line 1824 "y.tab.c"
     break;
 
   case 42:
-#line 306 "cminus.y"
+#line 303 "cminus.y"
         {
             yyval = yyvsp[0];
         }
-#line 1835 "y.tab.c"
+#line 1832 "y.tab.c"
     break;
 
   case 43:
-#line 312 "cminus.y"
+#line 309 "cminus.y"
          { 
         yyval = newExpNode(OpK);
         yyval->attr.op = EQ;
         }
-#line 1844 "y.tab.c"
+#line 1841 "y.tab.c"
     break;
 
   case 44:
-#line 316 "cminus.y"
+#line 313 "cminus.y"
          { 
         yyval = newExpNode(OpK);
         yyval->attr.op = NE; }
-#line 1852 "y.tab.c"
+#line 1849 "y.tab.c"
     break;
 
   case 45:
-#line 319 "cminus.y"
+#line 316 "cminus.y"
          { 
         yyval = newExpNode(OpK);
         yyval->attr.op = LT; }
-#line 1860 "y.tab.c"
+#line 1857 "y.tab.c"
     break;
 
   case 46:
-#line 322 "cminus.y"
+#line 319 "cminus.y"
          { 
         yyval = newExpNode(OpK);
         yyval->attr.op = LE; }
-#line 1868 "y.tab.c"
+#line 1865 "y.tab.c"
     break;
 
   case 47:
-#line 325 "cminus.y"
+#line 322 "cminus.y"
         { 
         yyval = newExpNode(OpK);
         yyval->attr.op = GT; }
-#line 1876 "y.tab.c"
+#line 1873 "y.tab.c"
     break;
 
   case 48:
-#line 328 "cminus.y"
+#line 325 "cminus.y"
          { 
         yyval = newExpNode(OpK);
         yyval->attr.op = GE; }
-#line 1884 "y.tab.c"
+#line 1881 "y.tab.c"
     break;
 
   case 49:
-#line 335 "cminus.y"
+#line 332 "cminus.y"
         {
             yyval = newExpNode(OpK);
             yyval->attr.op = yyvsp[-1]; 
@@ -1892,31 +1889,31 @@ yyreduce:
             yyval->child[1] = yyvsp[0]; 
             yyval->lineno = lineno;
         }
-#line 1896 "y.tab.c"
+#line 1893 "y.tab.c"
     break;
 
   case 50:
-#line 343 "cminus.y"
+#line 340 "cminus.y"
         {
             yyval = yyvsp[0]; // Pass-through
         }
-#line 1904 "y.tab.c"
+#line 1901 "y.tab.c"
     break;
 
   case 51:
-#line 349 "cminus.y"
+#line 346 "cminus.y"
            { yyval = PLUS; }
-#line 1910 "y.tab.c"
+#line 1907 "y.tab.c"
     break;
 
   case 52:
-#line 350 "cminus.y"
+#line 347 "cminus.y"
             { yyval = MINUS; }
-#line 1916 "y.tab.c"
+#line 1913 "y.tab.c"
     break;
 
   case 53:
-#line 355 "cminus.y"
+#line 352 "cminus.y"
         {
 
             yyval = newExpNode(OpK);
@@ -1925,90 +1922,89 @@ yyreduce:
             yyval->child[1] = yyvsp[0]; // Right operand
             yyval->lineno = lineno;
         }
-#line 1929 "y.tab.c"
+#line 1926 "y.tab.c"
     break;
 
   case 54:
-#line 364 "cminus.y"
+#line 361 "cminus.y"
         {
-            fprintf(stderr,"tokenString in factor %s\n",tokenString);
             yyval = yyvsp[0];
         }
-#line 1938 "y.tab.c"
+#line 1934 "y.tab.c"
     break;
 
   case 55:
-#line 371 "cminus.y"
+#line 367 "cminus.y"
             { yyval = TIMES; }
-#line 1944 "y.tab.c"
+#line 1940 "y.tab.c"
     break;
 
   case 56:
-#line 372 "cminus.y"
+#line 368 "cminus.y"
            { yyval = OVER; }
-#line 1950 "y.tab.c"
+#line 1946 "y.tab.c"
     break;
 
   case 57:
-#line 377 "cminus.y"
+#line 373 "cminus.y"
         {
             yyval = yyvsp[-1];
         }
-#line 1958 "y.tab.c"
+#line 1954 "y.tab.c"
     break;
 
   case 58:
+#line 377 "cminus.y"
+        {
+            yyval = yyvsp[0];
+        }
+#line 1962 "y.tab.c"
+    break;
+
+  case 59:
 #line 381 "cminus.y"
         {
             yyval = yyvsp[0];
         }
-#line 1966 "y.tab.c"
-    break;
-
-  case 59:
-#line 385 "cminus.y"
-        {
-            yyval = yyvsp[0];
-        }
-#line 1974 "y.tab.c"
+#line 1970 "y.tab.c"
     break;
 
   case 60:
-#line 389 "cminus.y"
+#line 385 "cminus.y"
     {
         yyval = newExpNode(ConstK);
         yyval->attr.val = atoi(tokenString);
     }
-#line 1983 "y.tab.c"
+#line 1979 "y.tab.c"
     break;
 
   case 61:
-#line 397 "cminus.y"
+#line 393 "cminus.y"
         {
             yyval = newExpNode(CallK);
             yyval->attr.name = yyvsp[-3]->attr.name;
             yyval->child[0] = yyvsp[-1]; 
             yyval->lineno = lineno;
         }
-#line 1994 "y.tab.c"
+#line 1990 "y.tab.c"
     break;
 
   case 62:
-#line 406 "cminus.y"
+#line 402 "cminus.y"
                { yyval = yyvsp[0]; }
-#line 2000 "y.tab.c"
+#line 1996 "y.tab.c"
     break;
 
   case 63:
-#line 408 "cminus.y"
+#line 404 "cminus.y"
         {
             yyval = NULL;
         }
-#line 2008 "y.tab.c"
+#line 2004 "y.tab.c"
     break;
 
   case 64:
-#line 415 "cminus.y"
+#line 411 "cminus.y"
         {
             YYSTYPE t = yyvsp[-2];
             if (t != NULL) {
@@ -2017,19 +2013,19 @@ yyreduce:
                 yyval = yyvsp[-2];
             } else yyval = yyvsp[0];
         }
-#line 2021 "y.tab.c"
+#line 2017 "y.tab.c"
     break;
 
   case 65:
-#line 424 "cminus.y"
+#line 420 "cminus.y"
         {
             yyval = yyvsp[0];
         }
-#line 2029 "y.tab.c"
+#line 2025 "y.tab.c"
     break;
 
 
-#line 2033 "y.tab.c"
+#line 2029 "y.tab.c"
 
       default: break;
     }
@@ -2261,7 +2257,7 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 433 "cminus.y"
+#line 429 "cminus.y"
 
 
 int yyerror(char * message)

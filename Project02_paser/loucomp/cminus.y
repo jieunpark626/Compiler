@@ -197,7 +197,6 @@ statement_list : statement_list statement
               }
             | { 
                 $$ = NULL;
-                fprintf(stderr,"token string in NUL %s\n",tokenString); 
                 }
             ;
 
@@ -257,7 +256,6 @@ return_stmt
         }
     | RETURN expression SEMI
         {
-            fprintf(stderr,"tokenString in return %s\n",tokenString);
             $$ = newStmtNode(ReturnK);
             $$->child[0] = $2; // Return Value
             $$->lineno = lineno;
@@ -280,7 +278,6 @@ expression
 
 var : identifier
         {
-            fprintf(stderr, "DEBUG: var identifier name = %s\n", $1->attr.name);
             $$ = newExpNode(IdK);
             $$->attr.name = $1->attr.name;
         }
@@ -362,7 +359,6 @@ term
         }
     | factor
         {
-            fprintf(stderr,"tokenString in factor %s\n",tokenString);
             $$ = $1;
         }
     ;

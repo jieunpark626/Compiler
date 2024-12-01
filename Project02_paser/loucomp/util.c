@@ -195,7 +195,7 @@ void printTree( TreeNode * tree )
           break;
 
         case FunK:
-          fprintf(listing, "Function Declaration : name = %s, return type = ", tree->attr.name);
+          fprintf(listing, "Function Declaration: name = %s, return type = ", tree->attr.name);
           printDeclType(tree);
           break;
 
