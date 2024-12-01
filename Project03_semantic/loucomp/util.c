@@ -167,7 +167,6 @@ void printDeclType(TreeNode* tree){
           break;
       case IntegerArray:
           fprintf(listing, "int[]\n"); 
-
           break;
       case VoidArray:
           fprintf(listing, "void[]\n");
@@ -195,7 +194,7 @@ void printTree( TreeNode * tree )
           break;
 
         case FunK:
-          fprintf(listing, "Function Declaration : name = %s, return type = ", tree->attr.name);
+          fprintf(listing, "Function Declaration: name = %s, return type = ", tree->attr.name);
           printDeclType(tree);
           break;
 
@@ -243,6 +242,7 @@ void printTree( TreeNode * tree )
     { switch (tree->kind.exp) {
         case AssignK:
           fprintf(listing,"Assign:\n");
+          fprintf(listing,"child[0] type %d, 1 tpye %d\n",tree->child[0]->type, tree->child[1]->type);
           break;
         case OpK:
           fprintf(listing,"Op: ");

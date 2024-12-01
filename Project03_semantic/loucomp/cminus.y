@@ -57,6 +57,7 @@ identifier : ID
             {
                 $$ = newExpNode(IdK);
                 $$->attr.name = copyString(tokenString);
+                $$->lineno = lineno;
             }
             ;
 
@@ -64,6 +65,7 @@ number : NUM
         {
             $$ = newExpNode(ConstK); 
             $$->attr.val = atoi(tokenString);
+            $$->type = Integer;
         }
         ;
 
@@ -197,7 +199,6 @@ statement_list : statement_list statement
               }
             | { 
                 $$ = NULL;
-                fprintf(stderr,"token string in NUL %s\n",tokenString); 
                 }
             ;
 
@@ -257,7 +258,6 @@ return_stmt
         }
     | RETURN expression SEMI
         {
-            fprintf(stderr,"tokenString in return %s\n",tokenString);
             $$ = newStmtNode(ReturnK);
             $$->child[0] = $2; // Return Value
             $$->lineno = lineno;
@@ -280,15 +280,16 @@ expression
 
 var : identifier
         {
-            fprintf(stderr, "DEBUG: var identifier name = %s\n", $1->attr.name);
             $$ = newExpNode(IdK);
             $$->attr.name = $1->attr.name;
+            $$->lineno = $1->lineno;
         }
         | identifier LBRACE expression RBRACE
         {
             $$ = newExpNode(IdK);
             $$->attr.name = copyString($1->attr.name);
-            $$->child[0] = $3; // Array Index
+            $$->child[0] = $3;
+            $$->child[0]->attr.name = $3->attr.name;
             $$->lineno = lineno;
         }
         ;
@@ -300,7 +301,7 @@ simple_expression
             $$->attr.op = $2->attr.op; 
             $$->child[0] = $1; 
             $$->child[1] = $3; 
-            $$->lineno = lineno;
+            $$->lineno = $1->lineno;
         }
     | additive_expression
         {
@@ -337,11 +338,11 @@ additive_expression
             $$->attr.op = $2; 
             $$->child[0] = $1; 
             $$->child[1] = $3; 
-            $$->lineno = lineno;
+            $$->lineno = $1->lineno;
         }
     | term
         {
-            $$ = $1; // Pass-through
+            $$ = $1;
         }
     ;
 
@@ -353,7 +354,6 @@ addop
 term
     : term mulop factor
         {
-
             $$ = newExpNode(OpK);
             $$->attr.op = $2; // Multiplicative operator
             $$->child[0] = $1; // Left operand
@@ -362,7 +362,6 @@ term
         }
     | factor
         {
-            fprintf(stderr,"tokenString in factor %s\n",tokenString);
             $$ = $1;
         }
     ;
@@ -388,7 +387,9 @@ factor
     | NUM
     {
         $$ = newExpNode(ConstK);
+        $$->lineno = lineno;
         $$->attr.val = atoi(tokenString);
+        $$->type = Integer;
     }
     ;
 

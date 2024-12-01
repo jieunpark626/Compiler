@@ -8,3 +8,6 @@ fprintf(listing, "Error: Invalid return at line %d\n", lineno);
 fprintf(listing, "Error: invalid assignment at line %d\n", lineno);
 fprintf(listing, "Error: invalid operation at line %d\n", lineno);
 fprintf(listing, "Error: invalid condition at line %d\n", lineno);
+fprintf(listing, "Error: Symbol \"%s\" is redefined at line %d (already defined at line ", name, lineno);
+// Program to sequentially print all the line numbers
+fprintf(listing, ")\n");
