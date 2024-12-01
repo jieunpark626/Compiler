@@ -244,8 +244,9 @@ static void checkNode(TreeNode * t)
            t->type = t->child[0]->type;
           break;
         case OpK:
-          if(t->child[0]->type != Integer || t->child[1]->type != Integer){
-            // fprintf(listing, "LHS lineno is %d and RHS lineno is %d\n", t->child[0]->lineno,t->child[1]->lineno);
+
+          if (!((t->child[0]->type == Integer || t->child[0]->type == IntegerArray) &&
+                  (t->child[1]->type == Integer || t->child[1]->type == IntegerArray))){
             fprintf(listing, "Error: invalid operation at line %d\n", t->child[0]->lineno);
           }
           t->type = Integer;
@@ -264,7 +265,6 @@ static void checkNode(TreeNode * t)
           }
           break;
         case CallK: {
-          
           Scope curScope = findScope(t->attr.name);
           BucketList symbol = findSymbolinCheck(curScope, t->attr.name);
           if (symbol == NULL) {
@@ -285,13 +285,13 @@ static void checkNode(TreeNode * t)
       { 
         case IfK:
         case WhileK:
-          if (t->child[0]->type != Integer) { // 조건문이 정수가 아닌 경우
+          if (t->child[0]->type != Integer) { 
             fprintf(listing, "Error: invalid condition at line %d\n", t->child[0]->lineno);
           }
           break;
         
         case ReturnK:
-          if (t->child[0] != NULL && t->child[0]->type != Integer) { // 반환 타입이 잘못된 경우
+          if (t->child[0] != NULL && t->child[0]->type != Integer) {
             fprintf(listing, "Error: Invalid return at line %d\n", t->lineno);
           }
           break;
@@ -323,13 +323,13 @@ void addBuiltinFunc(Scope globalScope){
 void printRedefinedError(BucketList symbol){
   fprintf(listing, "Error: Symbol \"%s\" is redefined at line (already defined at line ", symbol->name);
   // Program to sequentially print all the line numbers
-  LineList line = symbol->lines; // 심볼의 LineList 가져오기
+  LineList line = symbol->lines; 
   while (line != NULL) {
-      fprintf(listing, "%d", line->lineno); // 현재 라인 번호 출력
+      fprintf(listing, "%d", line->lineno);
       if (line->next != NULL) {
-          fprintf(listing, ", "); // 다음 라인이 있으면 콤마 추가
+          fprintf(listing, ", "); 
       }
-      line = line->next; // 다음 라인으로 이동
+      line = line->next; 
   }
   fprintf(listing, ")\n");
 }

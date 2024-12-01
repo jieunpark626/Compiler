@@ -140,7 +140,7 @@ void insertScope(char *name){
   newScope->parent = curScope;
   newScope->nestedLevel = (curScope->nestedLevel)+1;
 
-  pushScopeToStack(newScope); // 스택에 현재 스코프 push
+  pushScopeToStack(newScope); 
 }
 
 
@@ -217,15 +217,14 @@ BucketList findSymbolinCheck(Scope curScope, char *name) {
     int h = hash(name); 
     while (curScope != NULL) { 
         BucketList symbol = curScope->symbolTable[h];
-        // 현재 스코프의 해시 버킷 탐색
         while (symbol != NULL) {
             
-            if (strcmp(name, symbol->name) == 0) { // 이름이 일치하면 반환
+            if (strcmp(name, symbol->name) == 0) {
                 return symbol;
             }
-            symbol = symbol->next; // 다음 심볼 확인
+            symbol = symbol->next;
         }
-        curScope = curScope->parent; // 부모 스코프로 이동
+        curScope = curScope->parent;
     }
-    return NULL; // 심볼을 찾지 못한 경우
+    return NULL;
 }
