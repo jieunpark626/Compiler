@@ -65,11 +65,13 @@ int st_lookup ( char * name );
  * listing of the symbol table contents 
  * to the listing file
  */
-void printSymTab(FILE * listing);
 
+BucketList st_insert(Scope scope, SymbolKind kind, ExpType type, char * name, int lineno, int loc);
+void printSymTab(FILE *listing);
 Scope getCurScope();
 Scope createScope(char *name);
 void pushScopeToStack(Scope scope);
+void insertScope(char *name);
 BucketList checkScope(char *name);
 void addSymbol(TreeNode *t, SymbolKind kind);
 BucketList findSymbol(char * name);

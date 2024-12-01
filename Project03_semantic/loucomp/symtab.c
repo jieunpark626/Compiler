@@ -46,28 +46,6 @@ static int listTop = 0;
  * loc = memory location is inserted only the
  * first time, otherwise ignored
  */
-// void st_insert( char * name, int lineno, int loc )
-// { int h = hash(name);
-//   BucketList l =  hashTable[h];
-//   while ((l != NULL) && (strcmp(name,l->name) != 0))
-//     l = l->next;
-//   if (l == NULL) /* variable not yet in table */
-//   { l = (BucketList) malloc(sizeof(struct BucketListRec));
-//     l->name = name;
-//     l->lines = (LineList) malloc(sizeof(struct LineListRec));
-//     l->lines->lineno = lineno;
-//     l->memloc = loc;
-//     l->lines->next = NULL;
-//     l->next = hashTable[h];
-//     hashTable[h] = l; }
-//   else /* found in table, so just add line number */
-//   { LineList t = l->lines;
-//     while (t->next != NULL) t = t->next;
-//     t->next = (LineList) malloc(sizeof(struct LineListRec));
-//     t->next->lineno = lineno;
-//     t->next->next = NULL;
-//   }
-// } /* st_insert */
 
 // scope's symbol table 에 symbol insert
 BucketList st_insert(Scope scope, SymbolKind kind, ExpType type, char * name, int lineno, int loc){
@@ -93,44 +71,10 @@ BucketList st_insert(Scope scope, SymbolKind kind, ExpType type, char * name, in
 /* Function st_lookup returns the memory 
  * location of a variable or -1 if not found
  */
-// int st_lookup ( char * name )
-// { int h = hash(name);
-//   BucketList l =  hashTable[h];
-//   while ((l != NULL) && (strcmp(name,l->name) != 0))
-//     l = l->next;
-//   if (l == NULL) return -1;
-//   else return l->memloc;
-// }
-
-/* Procedure printSymTab prints a formatted 
- * listing of the symbol table contents 
- * to the listing file
- */
-// void printSymTab(FILE * listing)
-// { int i;
-//   fprintf(listing,"Variable Name  Location   Line Numbers\n");
-//   fprintf(listing,"-------------  --------   ------------\n");
-//   for (i=0;i<SIZE;++i)
-//   { if (hashTable[i] != NULL)
-//     { BucketList l = hashTable[i];
-//       while (l != NULL)
-//       { LineList t = l->lines;
-//         fprintf(listing,"%-14s ",l->name);
-//         fprintf(listing,"%-8d  ",l->memloc);
-//         while (t != NULL)
-//         { fprintf(listing,"%4d ",t->lineno);
-//           t = t->next;
-//         }
-//         fprintf(listing,"\n");
-//         l = l->next;
-//       }
-//     }
-//   }
-// } /* printSymTab */
 
 void printSymTab(FILE *listing) {
     fprintf(listing, "< Symbol Table >\n");
-    fprintf(listing, " %-12s %-12s %-12s %-12s %-10s %s\n", 
+    fprintf(listing, " %-12s %-16s %-12s %-12s %-10s %s\n", 
             "Symbol Name", "Symbol Kind", "Symbol Type", 
             "Scope Name", "Location", "Line Numbers");
     fprintf(listing, "-------------  -----------  -------------  ------------  --------  ------------\n");
@@ -142,7 +86,7 @@ void printSymTab(FILE *listing) {
             BucketList bucket = scope->symbolTable[j];
             while (bucket != NULL) {
                 // 심볼 정보 출력
-                fprintf(listing, " %-12s %-12s %-12s %-12s %-10d ", 
+                fprintf(listing, " %-12s %-16s %-12s %-12s %-10d ", 
                         bucket->name, 
                         bucket->kind == Variable ? "Variable" : 
                         bucket->kind == Function ? "Function" : "Other",
